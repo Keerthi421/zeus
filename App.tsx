@@ -187,6 +187,11 @@ import { isLightTheme, themeColor } from './utils/ThemeUtils';
 export default class App extends React.PureComponent {
     private backPressListenerSubscription: NativeEventSubscription;
 
+    componentDidMount() {
+        // Initialize fiat rates when app starts
+        Stores.fiatStore.getFiatRates();
+    }
+
     private handleBackPress = (navigation: any) => {
         const dialogHasBeenClosed = Stores.modalStore.closeVisibleModalDialog();
         if (dialogHasBeenClosed) {
